@@ -1,0 +1,13 @@
+# solve dependency hell for newer tensorflow version. not tested on rtx20 series
+
+CONDA_OVERRIDE_CUDA="11.2" conda create -n cftf tensorflow==2.8.1=*cuda112* -c conda-forge
+conda activate cftf
+
+conda install -n cftf ipykernel --update-deps --force-reinstall
+pip install segmentation_models
+
+# opencv takes awhile and then complains about dependencies
+# pip install opencv-python might work better but hasn't been tested
+conda install opencv 
+pip install matplotlib
+pip install -U albumentations
